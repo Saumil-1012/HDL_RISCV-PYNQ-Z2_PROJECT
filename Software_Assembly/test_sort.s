@@ -91,7 +91,7 @@ end_sort:
     sub     x20, x9, x8      # x20 (Total Cycles) = x9 (End) - x8 (Start)
 
     # 3. Prepare our Magic Flag
-    # Looking at Figure 1a in your project sheet, the Status Flag is at 0x2000
+    # Looking at Figure 1a in  project sheet, the Status Flag is at 0x2000
     li      x21, 0x2000      # x21 = The memory address for the Status Flag
     li      x22, 0xDEADBEAF  # x22 = Our Magic Number!
 
