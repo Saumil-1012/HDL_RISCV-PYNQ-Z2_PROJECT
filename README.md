@@ -114,5 +114,5 @@ These addresses are used by the PS to inject instructions, control processor exe
 - **Task:** Sorting 32 signed integers in hardware
 
 ## Contributors
-- Saumil-1012
-- ZAnimenI
+- Saumilkumar savani(go69jal@mytum.de)
+- ZAnimenI(animenl.lin@tum.de)
