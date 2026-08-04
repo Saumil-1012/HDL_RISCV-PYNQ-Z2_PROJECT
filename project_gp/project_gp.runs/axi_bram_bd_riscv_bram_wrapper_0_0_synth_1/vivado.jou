@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Tue Aug  4 01:04:38 2026
+# Process ID: 31104
+# Current directory: C:/vivado_tutorial/project_3/project_3.runs/axi_bram_bd_riscv_bram_wrapper_0_0_synth_1
+# Command line: vivado.exe -log axi_bram_bd_riscv_bram_wrapper_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source axi_bram_bd_riscv_bram_wrapper_0_0.tcl
+# Log file: C:/vivado_tutorial/project_3/project_3.runs/axi_bram_bd_riscv_bram_wrapper_0_0_synth_1/axi_bram_bd_riscv_bram_wrapper_0_0.vds
+# Journal file: C:/vivado_tutorial/project_3/project_3.runs/axi_bram_bd_riscv_bram_wrapper_0_0_synth_1\vivado.jou
+# Running On: Kamal, OS: Windows, CPU Frequency: 3194 MHz, CPU Physical cores: 16, Host memory: 16369 MB
+#-----------------------------------------------------------
+source axi_bram_bd_riscv_bram_wrapper_0_0.tcl -notrace

@@ -1,0 +1,54 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.16629",
+   "Default View_TopLeft":"-40,443",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:10.0 non-TLS
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -lvl 6 -x 1850 -y 530 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 6 -x 1850 -y 560 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 1 -x 190 -y 580 -defaultsOSRD
+preplace inst proc_sys_reset_0 -pg 1 -lvl 1 -x 190 -y 400 -defaultsOSRD
+preplace inst axi_bram_ctrl_0 -pg 1 -lvl 3 -x 860 -y 680 -defaultsOSRD
+preplace inst blk_mem_gen_0 -pg 1 -lvl 4 -x 1260 -y 650 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 2 -x 560 -y 670 -defaultsOSRD
+preplace inst axi_gpio_0 -pg 1 -lvl 3 -x 860 -y 1000 -defaultsOSRD
+preplace inst riscv_bram_wrapper_0 -pg 1 -lvl 5 -x 1590 -y 890 -defaultsOSRD
+preplace inst axi_bram_ctrl_1 -pg 1 -lvl 3 -x 860 -y 840 -defaultsOSRD
+preplace inst blk_mem_gen_1 -pg 1 -lvl 4 -x 1260 -y 910 -defaultsOSRD
+preplace inst jtag_axi_0 -pg 1 -lvl 1 -x 190 -y 830 -defaultsOSRD
+preplace netloc axi_gpio_0_gpio_io_o 1 3 2 990 1050 1380J
+preplace netloc blk_mem_gen_0_doutb 1 3 2 1090 1060 1400J
+preplace netloc blk_mem_gen_1_doutb 1 3 2 1120 1070 1420J
+preplace netloc proc_sys_reset_0_peripheral_aresetn 1 0 5 0 760 410 760 720 1120 N 1120 1410
+preplace netloc proc_sys_reset_0_peripheral_reset 1 1 3 NJ 400 NJ 400 1020
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 5 -10 680 400 770 710 600 1000 1080 1390
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 -20 300 380
+preplace netloc riscv_bram_wrapper_0_dmem_addrb 1 3 3 1060 500 NJ 500 1810
+preplace netloc riscv_bram_wrapper_0_dmem_dinb 1 3 3 1080 1110 NJ 1110 1760
+preplace netloc riscv_bram_wrapper_0_dmem_enb 1 3 3 1100 1130 NJ 1130 1790
+preplace netloc riscv_bram_wrapper_0_dmem_web 1 3 3 1110 1140 NJ 1140 1780
+preplace netloc riscv_bram_wrapper_0_imem_addrb 1 3 3 1030 1150 NJ 1150 1820
+preplace netloc riscv_bram_wrapper_0_imem_dinb 1 3 3 1050 1090 NJ 1090 1770
+preplace netloc riscv_bram_wrapper_0_imem_enb 1 3 3 1040 1160 NJ 1160 1830
+preplace netloc riscv_bram_wrapper_0_imem_web 1 3 3 1070 1100 NJ 1100 1800
+preplace netloc axi_bram_ctrl_0_BRAM_PORTA 1 3 1 1010 570n
+preplace netloc axi_bram_ctrl_0_BRAM_PORTA1 1 3 1 1010 830n
+preplace netloc axi_smc_M00_AXI 1 2 1 720 650n
+preplace netloc axi_smc_M01_AXI 1 2 1 700 670n
+preplace netloc axi_smc_M02_AXI 1 2 1 690 690n
+preplace netloc processing_system7_0_DDR 1 1 5 400J 510 NJ 510 NJ 510 NJ 510 1820
+preplace netloc processing_system7_0_FIXED_IO 1 1 5 390J 490 NJ 490 NJ 490 NJ 490 1830
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 420 580n
+preplace netloc jtag_axi_0_M_AXI 1 1 1 420 660n
+levelinfo -pg 1 -40 190 560 860 1260 1590 1850
+pagesize -pg 1 -db -bbox -sgen -40 0 1960 1170
+"
+}
+{
+   "da_axi4_cnt":"4",
+   "da_board_cnt":"2",
+   "da_bram_cntlr_cnt":"1",
+   "da_clkrst_cnt":"1",
+   "da_ps7_cnt":"1"
+}

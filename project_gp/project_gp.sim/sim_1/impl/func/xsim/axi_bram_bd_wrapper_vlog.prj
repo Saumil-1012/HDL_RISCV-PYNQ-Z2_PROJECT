@@ -1,0 +1,6 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../lab3_new.gen/sources_1/bd/axi_bram_bd/ipshared/ec67/hdl" --include "../../../../../lab3_new.gen/sources_1/bd/axi_bram_bd/ipshared/3007/hdl" --include "../../../../../lab3_new.gen/sources_1/bd/axi_bram_bd/ipshared/f0b6/hdl/verilog" --include "../../../../../lab3_new.gen/sources_1/bd/axi_bram_bd/ipshared/66be/hdl/verilog" --include "C:/Xilinx/Vivado/2021.2/data/xilinx_vip/include" \
+"axi_bram_bd_wrapper_func_impl.v" \
+
+# Do not sort compile order
+nosort

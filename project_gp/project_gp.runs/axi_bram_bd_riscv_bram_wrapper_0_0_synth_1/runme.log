@@ -1,0 +1,314 @@
+
+*** Running vivado
+    with args -log axi_bram_bd_riscv_bram_wrapper_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source axi_bram_bd_riscv_bram_wrapper_0_0.tcl
+
+
+
+****** Vivado v2021.2 (64-bit)
+  **** SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
+  **** IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+    ** Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+source axi_bram_bd_riscv_bram_wrapper_0_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/gp/fpga/my_ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/saumilHDLSoftwre/Vivado/2021.2/data/ip'.
+Command: synth_design -top axi_bram_bd_riscv_bram_wrapper_0_0 -part xc7z020clg400-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 11520
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:16 . Memory (MB): peak = 1411.797 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'axi_bram_bd_riscv_bram_wrapper_0_0' [c:/vivado_tutorial/project_3/project_3.gen/sources_1/bd/axi_bram_bd/ip/axi_bram_bd_riscv_bram_wrapper_0_0/synth/axi_bram_bd_riscv_bram_wrapper_0_0.v:58]
+INFO: [Synth 8-6157] synthesizing module 'riscv_bram_wrapper' [C:/vivado_tutorial/Hardware_Design_RTL/riscv_bram_wrapper.v:13]
+INFO: [Synth 8-6157] synthesizing module 'mc_h' [C:/vivado_tutorial/Hardware_Design_RTL/mc_h.v:242]
+INFO: [Synth 8-6157] synthesizing module 'main_decoder' [C:/vivado_tutorial/Hardware_Design_RTL/mc_h.v:93]
+INFO: [Synth 8-6155] done synthesizing module 'main_decoder' (1#1) [C:/vivado_tutorial/Hardware_Design_RTL/mc_h.v:93]
+INFO: [Synth 8-6157] synthesizing module 'alu_decoder' [C:/vivado_tutorial/Hardware_Design_RTL/mc_h.v:170]
+INFO: [Synth 8-226] default block is never used [C:/vivado_tutorial/Hardware_Design_RTL/mc_h.v:177]
+INFO: [Synth 8-6155] done synthesizing module 'alu_decoder' (2#1) [C:/vivado_tutorial/Hardware_Design_RTL/mc_h.v:170]
+INFO: [Synth 8-6157] synthesizing module 'sign_extender' [C:/vivado_tutorial/Hardware_Design_RTL/mc_h.v:46]
+INFO: [Synth 8-6155] done synthesizing module 'sign_extender' (3#1) [C:/vivado_tutorial/Hardware_Design_RTL/mc_h.v:46]
+INFO: [Synth 8-6157] synthesizing module 'my_reg' [C:/vivado_tutorial/Hardware_Design_RTL/mc_h.v:15]
+INFO: [Synth 8-6155] done synthesizing module 'my_reg' (4#1) [C:/vivado_tutorial/Hardware_Design_RTL/mc_h.v:15]
+INFO: [Synth 8-6157] synthesizing module 'hazard_unit' [C:/vivado_tutorial/Hardware_Design_RTL/mc_h.v:193]
+INFO: [Synth 8-6155] done synthesizing module 'hazard_unit' (5#1) [C:/vivado_tutorial/Hardware_Design_RTL/mc_h.v:193]
+INFO: [Synth 8-6157] synthesizing module 'alu' [C:/vivado_tutorial/Hardware_Design_RTL/mc_h.v:66]
+INFO: [Synth 8-6155] done synthesizing module 'alu' (6#1) [C:/vivado_tutorial/Hardware_Design_RTL/mc_h.v:66]
+INFO: [Synth 8-6155] done synthesizing module 'mc_h' (7#1) [C:/vivado_tutorial/Hardware_Design_RTL/mc_h.v:242]
+INFO: [Synth 8-6155] done synthesizing module 'riscv_bram_wrapper' (8#1) [C:/vivado_tutorial/Hardware_Design_RTL/riscv_bram_wrapper.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'axi_bram_bd_riscv_bram_wrapper_0_0' (9#1) [c:/vivado_tutorial/project_3/project_3.gen/sources_1/bd/axi_bram_bd/ip/axi_bram_bd_riscv_bram_wrapper_0_0/synth/axi_bram_bd_riscv_bram_wrapper_0_0.v:58]
+WARNING: [Synth 8-7129] Port instr[6] in module sign_extender is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[5] in module sign_extender is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[4] in module sign_extender is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[3] in module sign_extender is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[2] in module sign_extender is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[1] in module sign_extender is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[0] in module sign_extender is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:19 . Memory (MB): peak = 1411.797 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:20 . Memory (MB): peak = 1411.797 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:20 . Memory (MB): peak = 1411.797 ; gain = 0.000
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 1411.797 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1448.078 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.119 . Memory (MB): peak = 1448.121 ; gain = 0.043
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:29 . Memory (MB): peak = 1448.121 ; gain = 36.324
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:29 . Memory (MB): peak = 1448.121 ; gain = 36.324
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:29 . Memory (MB): peak = 1448.121 ; gain = 36.324
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'mem_state_reg' in module 'mc_h'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                MEM_IDLE |                              001 |                               00
+                MEM_WAIT |                              010 |                               01
+                MEM_DONE |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'mem_state_reg' using encoding 'one-hot' in module 'mc_h'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:30 . Memory (MB): peak = 1448.121 ; gain = 36.324
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 5     
+	   3 Input   32 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 48    
+	                5 Bit    Registers := 5     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 4     
+	                1 Bit    Registers := 16    
++---Muxes : 
+	   2 Input   32 Bit        Muxes := 21    
+	   3 Input   32 Bit        Muxes := 3     
+	   2 Input    5 Bit        Muxes := 3     
+	   4 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 2     
+	   8 Input    3 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 1     
+	   8 Input    2 Bit        Muxes := 2     
+	   4 Input    2 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 3     
+	   8 Input    1 Bit        Muxes := 7     
+	   2 Input    1 Bit        Muxes := 40    
+	   3 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_web[3] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_web[2] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_web[1] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_web[0] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[31] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[30] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[29] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[28] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[27] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[26] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[25] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[24] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[23] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[22] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[21] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[20] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[19] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[18] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[17] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[16] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[15] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[14] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[13] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[12] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[11] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[10] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[9] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[8] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[7] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[6] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[5] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[4] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[3] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[2] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[1] driven by constant 0
+INFO: [Synth 8-3917] design axi_bram_bd_riscv_bram_wrapper_0_0 has port imem_dinb[0] driven by constant 0
+WARNING: [Synth 8-7129] Port instr[6] in module sign_extender is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[5] in module sign_extender is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[4] in module sign_extender is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[3] in module sign_extender is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[2] in module sign_extender is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[1] in module sign_extender is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[0] in module sign_extender is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:42 . Memory (MB): peak = 1448.121 ; gain = 36.324
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:36 ; elapsed = 00:00:48 . Memory (MB): peak = 1448.121 ; gain = 36.324
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:00:49 . Memory (MB): peak = 1448.121 ; gain = 36.324
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:37 ; elapsed = 00:00:50 . Memory (MB): peak = 1465.797 ; gain = 54.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:41 ; elapsed = 00:00:54 . Memory (MB): peak = 1479.602 ; gain = 67.805
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:41 ; elapsed = 00:00:54 . Memory (MB): peak = 1479.602 ; gain = 67.805
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:41 ; elapsed = 00:00:54 . Memory (MB): peak = 1479.602 ; gain = 67.805
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:41 ; elapsed = 00:00:54 . Memory (MB): peak = 1479.602 ; gain = 67.805
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:41 ; elapsed = 00:00:54 . Memory (MB): peak = 1479.602 ; gain = 67.805
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:41 ; elapsed = 00:00:54 . Memory (MB): peak = 1479.602 ; gain = 67.805
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY4 |    72|
+|2     |LUT1   |    51|
+|3     |LUT2   |   258|
+|4     |LUT3   |   205|
+|5     |LUT4   |   201|
+|6     |LUT5   |   233|
+|7     |LUT6   |   995|
+|8     |MUXF7  |   256|
+|9     |FDCE   |  1593|
+|10    |FDPE   |     1|
++------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:41 ; elapsed = 00:00:54 . Memory (MB): peak = 1479.602 ; gain = 67.805
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 8 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:28 ; elapsed = 00:00:51 . Memory (MB): peak = 1479.602 ; gain = 31.480
+Synthesis Optimization Complete : Time (s): cpu = 00:00:41 ; elapsed = 00:00:54 . Memory (MB): peak = 1479.602 ; gain = 67.805
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 1489.012 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 328 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1498.695 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: 9c3f38ce
+INFO: [Common 17-83] Releasing license: Synthesis
+74 Infos, 15 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:46 ; elapsed = 00:01:00 . Memory (MB): peak = 1498.695 ; gain = 86.898
+INFO: [Common 17-1381] The checkpoint 'C:/vivado_tutorial/project_3/project_3.runs/axi_bram_bd_riscv_bram_wrapper_0_0_synth_1/axi_bram_bd_riscv_bram_wrapper_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP axi_bram_bd_riscv_bram_wrapper_0_0, cache-ID = d363d7cc95225e8b
+INFO: [Coretcl 2-1174] Renamed 5 cell refs.
+INFO: [Common 17-1381] The checkpoint 'C:/vivado_tutorial/project_3/project_3.runs/axi_bram_bd_riscv_bram_wrapper_0_0_synth_1/axi_bram_bd_riscv_bram_wrapper_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file axi_bram_bd_riscv_bram_wrapper_0_0_utilization_synth.rpt -pb axi_bram_bd_riscv_bram_wrapper_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Aug  4 01:05:53 2026...

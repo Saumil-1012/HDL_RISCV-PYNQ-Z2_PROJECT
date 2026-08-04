@@ -1,0 +1,17 @@
+
+*** Running vivado
+    with args -log axi_bram_bd_axi_bram_ctrl_0_1.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source axi_bram_bd_axi_bram_ctrl_0_1.tcl
+
+
+
+****** Vivado v2021.2 (64-bit)
+  **** SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
+  **** IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+    ** Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+source axi_bram_bd_axi_bram_ctrl_0_1.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/gp/fpga/my_ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/saumilHDLSoftwre/Vivado/2021.2/data/ip'.
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP axi_bram_bd_axi_bram_ctrl_0_1, cache-ID = 5df24e8f81b9f0bf.
+INFO: [Common 17-206] Exiting Vivado at Tue Aug  4 01:05:58 2026...

@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/thoch/fpga/lab3_new/lab3_new.srcs/sim_1/imports/lab_12_fpga-3/bram_writer_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_bram_seq_writer_wave_mon
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/thoch/fpga/lab3_new/lab3_new.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
