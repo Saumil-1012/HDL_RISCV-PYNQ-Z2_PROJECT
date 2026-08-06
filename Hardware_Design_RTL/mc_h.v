@@ -121,37 +121,44 @@ endmodule
 
 module main_decoder (
     input  [6:0] opcode,
+    output reg   valid,
     output reg   branch,
     output reg   jump,
     output reg   sel_result, // 0: ALU out, 1: Mem data read
     output reg   we_mem,
     output reg   sel_alu_src_b,
+    output reg   sel_lui,
     output reg   rf_we,
     output reg [2:0] sel_ext,
     output reg [1:0] alu_op
 );
     always @(*) begin
+        valid         = 1'b0;
         branch        = 1'b0;
         jump          = 1'b0;
         sel_result    = 1'b0;
         we_mem        = 1'b0;
         sel_alu_src_b = 1'b0;
+        sel_lui       = 1'b0;
         rf_we         = 1'b0;
         sel_ext       = 3'b000;
         alu_op        = 2'b00;
 
         case (opcode)
             7'b0110011: begin // R-type
+                valid = 1'b1;
                 rf_we = 1'b1;
                 alu_op = 2'b01;
             end
             7'b0010011: begin // I-type ALU
+                valid = 1'b1;
                 rf_we = 1'b1;
                 sel_alu_src_b = 1'b1;
                 sel_ext = 3'b000;
                 alu_op = 2'b10;
             end
             7'b0000011: begin // LW
+                valid = 1'b1;
                 rf_we = 1'b1;
                 sel_alu_src_b = 1'b1;
                 sel_result = 1'b1;
@@ -159,20 +166,31 @@ module main_decoder (
                 alu_op = 2'b00;
             end
             7'b0100011: begin // SW
+                valid = 1'b1;
                 we_mem = 1'b1;
                 sel_alu_src_b = 1'b1;
                 sel_ext = 3'b001;
                 alu_op = 2'b00;
             end
             7'b1100011: begin // BEQ
+                valid = 1'b1;
                 branch = 1'b1;
                 sel_ext = 3'b010;
                 alu_op = 2'b11;
             end
             7'b1101111: begin // JAL
+                valid = 1'b1;
                 jump = 1'b1;
                 rf_we = 1'b1;
                 sel_ext = 3'b011;
+            end
+            7'b0110111: begin // LUI
+                valid = 1'b1;
+                rf_we = 1'b1;
+                sel_lui = 1'b1;
+                sel_alu_src_b = 1'b1;
+                sel_ext = 3'b100;
+                alu_op = 2'b00;
             end
             default: ;
         endcase
@@ -252,9 +270,21 @@ endmodule
 //                    COMPLETE 5-STAGE PIPELINED TOP
 // ====================================================================
 
-module mc_h(
+// INTERNAL_MEMORY=1 preserves the original self-contained simulation core.
+// Set it to 0 in the Vivado wrapper to use the AXI-visible BRAM Port B pins.
+module mc_h #(parameter INTERNAL_MEMORY = 1) (
     input clk,
-    input rst_n
+    input rst_n,
+    output wire        imem_enb,
+    output wire [3:0]  imem_web,
+    output wire [31:0] imem_addrb,
+    output wire [31:0] imem_dinb,
+    input  wire [31:0] imem_doutb,
+    output wire        dmem_enb,
+    output wire [3:0]  dmem_web,
+    output wire [31:0] dmem_addrb,
+    output wire [31:0] dmem_dinb,
+    input  wire [31:0] dmem_doutb
 );
     wire rst = ~rst_n;
 
@@ -268,6 +298,9 @@ module mc_h(
 
     // IF Stage Signals
     wire [31:0] F_pc, F_next_pc, F_pc_plus4, F_instr;
+    // Exposed performance counters: useful in xsim through hierarchy and in
+    // ILA probes.  They reset with the core, so every run is comparable.
+    reg [63:0] cycle_count, instret_count, load_count, store_count;
     
     // ID Stage Signals (Outputs of IF/ID Reg & Decode logic)
     reg [31:0] D_pc, D_pc_plus4, D_instr;
@@ -275,31 +308,32 @@ module mc_h(
     wire [2:0] D_funct3;
     wire       D_funct7_5;
     wire [4:0] D_rs1, D_rs2, D_rd;
-    wire D_branch, D_jump, D_sel_result, D_we_mem, D_sel_alu_src_b, D_rf_we;
+    wire D_valid, D_branch, D_jump, D_sel_result, D_we_mem, D_sel_alu_src_b, D_sel_lui, D_rf_we;
     wire [2:0] D_sel_ext;
     wire [1:0] D_alu_op;
     wire [3:0] D_alu_control;
     wire [31:0] D_rd1, D_rd2, D_imm_ext;
 
     // EX Stage Signals (Outputs of ID/EX Reg & EX logic)
-    reg E_branch, E_sel_result, E_we_mem, E_sel_alu_src_b, E_rf_we, E_jump;
+    reg E_valid, E_branch, E_sel_result, E_we_mem, E_sel_alu_src_b, E_sel_lui, E_rf_we, E_jump;
     reg [3:0] E_alu_control;
     reg [31:0] E_rd1, E_rd2, E_pc, E_imm_ext, E_pc_plus4;
     reg [4:0] E_rs1, E_rs2, E_rd;
     reg [31:0] E_forwarded_a, E_forwarded_b;
     wire [31:0] E_alu_src_b_mux;
+    wire [31:0] E_alu_src_a_mux;
     wire [31:0] E_alu_result;
     wire E_zero;
     wire [31:0] E_target_pc;
 
     // MA Stage Signals (Outputs of EX/MA Reg & MA logic)
-    reg M_sel_result, M_we_mem, M_rf_we;
+    reg M_valid, M_sel_result, M_we_mem, M_rf_we;
     reg [31:0] M_alu_result, M_write_data;
     reg [4:0] M_rd;
     wire [31:0] M_mem_out;
 
     // WB Stage Signals (Outputs of MA/WB Reg & WB logic)
-    reg W_sel_result, W_rf_we;
+    reg W_valid, W_sel_result, W_rf_we;
     reg [31:0] W_alu_result, W_mem_out;
     reg [4:0] W_rd;
     wire [31:0] W_wb_data;
@@ -315,9 +349,18 @@ module mc_h(
         .clk(clk), .rst_n(rst_n), .en(!stall_IF), .next_pc(F_next_pc), .pc(F_pc)
     );
 
+    // Retain named IMEM/DMEM instances so the original testbench and program
+    // loader continue to work.  Vivado removes these memories when the
+    // external configuration is selected because their outputs are unused.
+    wire [31:0] F_instr_internal;
     my_mem #(64) IMEM (
-        .clk(clk), .we(1'b0), .addr(F_pc), .data_in(32'b0), .data_out(F_instr)
+        .clk(clk), .we(1'b0), .addr(F_pc), .data_in(32'b0), .data_out(F_instr_internal)
     );
+    assign F_instr = INTERNAL_MEMORY ? F_instr_internal : imem_doutb;
+    assign imem_enb = INTERNAL_MEMORY ? 1'b0 : 1'b1;
+    assign imem_web = 4'b0;
+    assign imem_addrb = F_pc;
+    assign imem_dinb = 32'b0;
 
     // --- PIPELINE REGISTER 1: IF -> ID ---
     always @(posedge clk or negedge rst_n) begin
@@ -344,8 +387,8 @@ module mc_h(
     assign D_rd       = D_instr[11:7];
 
     main_decoder MDEC (
-        .opcode(D_opcode), .branch(D_branch), .jump(D_jump), .sel_result(D_sel_result),
-        .we_mem(D_we_mem), .sel_alu_src_b(D_sel_alu_src_b), .rf_we(D_rf_we),
+        .opcode(D_opcode), .valid(D_valid), .branch(D_branch), .jump(D_jump), .sel_result(D_sel_result),
+        .we_mem(D_we_mem), .sel_alu_src_b(D_sel_alu_src_b), .sel_lui(D_sel_lui), .rf_we(D_rf_we),
         .sel_ext(D_sel_ext), .alu_op(D_alu_op)
     );
 
@@ -366,11 +409,13 @@ module mc_h(
     // --- PIPELINE REGISTER 2: ID -> EX ---
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n || flush_EX) begin
+            E_valid         <= 1'b0;
             E_jump          <= 1'b0;
             E_branch        <= 1'b0;
             E_sel_result    <= 1'b0;
             E_we_mem        <= 1'b0;
             E_sel_alu_src_b <= 1'b0;
+            E_sel_lui       <= 1'b0;
             E_rf_we         <= 1'b0;
             E_alu_control   <= 4'b0;
             E_rd1           <= 32'b0;
@@ -382,11 +427,13 @@ module mc_h(
             E_rs2           <= 5'b0;
             E_rd            <= 5'b0;
         end else begin
+            E_valid         <= D_valid;
             E_jump          <= D_jump;
             E_branch        <= D_branch;
             E_sel_result    <= D_sel_result;
             E_we_mem        <= D_we_mem;
             E_sel_alu_src_b <= D_sel_alu_src_b;
+            E_sel_lui       <= D_sel_lui;
             E_rf_we         <= D_rf_we;
             E_alu_control   <= D_alu_control;
             E_rd1           <= D_rd1;
@@ -427,15 +474,17 @@ module mc_h(
     end
 
     assign E_alu_src_b_mux = E_sel_alu_src_b ? E_imm_ext : E_forwarded_b;
+    assign E_alu_src_a_mux = E_sel_lui ? 32'b0 : E_forwarded_a;
 
     alu ALU_CORE (
-        .a(E_forwarded_a), .b(E_alu_src_b_mux), .alu_ctrl(E_alu_control),
+        .a(E_alu_src_a_mux), .b(E_alu_src_b_mux), .alu_ctrl(E_alu_control),
         .result(E_alu_result), .zero(E_zero)
     );
 
     // --- PIPELINE REGISTER 3: EX -> MA ---
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
+            M_valid      <= 1'b0;
             M_sel_result <= 1'b0;
             M_we_mem     <= 1'b0;
             M_rf_we      <= 1'b0;
@@ -443,6 +492,7 @@ module mc_h(
             M_write_data <= 32'b0;
             M_rd         <= 5'b0;
         end else begin
+            M_valid      <= E_valid;
             M_sel_result <= E_sel_result;
             M_we_mem     <= E_we_mem;
             M_rf_we      <= E_rf_we;
@@ -456,20 +506,28 @@ module mc_h(
     // ====================================================================
     // 4. MEMORY ACCESS (MA) STAGE
     // ====================================================================
+    wire [31:0] M_mem_out_internal;
     my_mem #(64) DMEM (
-        .clk(clk), .we(M_we_mem), .addr(M_alu_result),
-        .data_in(M_write_data), .data_out(M_mem_out)
+        .clk(clk), .we(M_we_mem && INTERNAL_MEMORY), .addr(M_alu_result),
+        .data_in(M_write_data), .data_out(M_mem_out_internal)
     );
+    assign M_mem_out = INTERNAL_MEMORY ? M_mem_out_internal : dmem_doutb;
+    assign dmem_enb = (!INTERNAL_MEMORY) && (M_we_mem || M_sel_result);
+    assign dmem_web = (!INTERNAL_MEMORY && M_we_mem) ? 4'hF : 4'h0;
+    assign dmem_addrb = M_alu_result;
+    assign dmem_dinb = M_write_data;
 
     // --- PIPELINE REGISTER 4: MA -> WB ---
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
+            W_valid      <= 1'b0;
             W_sel_result <= 1'b0;
             W_rf_we      <= 1'b0;
             W_alu_result <= 32'b0;
             W_mem_out    <= 32'b0;
             W_rd         <= 5'b0;
         end else begin
+            W_valid      <= M_valid;
             W_sel_result <= M_sel_result;
             W_rf_we      <= M_rf_we;
             W_alu_result <= M_alu_result;
@@ -483,6 +541,24 @@ module mc_h(
     // 5. WRITE BACK (WB) STAGE
     // ====================================================================
     assign W_wb_data = W_sel_result ? W_mem_out : W_alu_result;
+
+    // Counter semantics: cycles count active clocks after reset; instret
+    // counts architectural writes and stores.  These are identical metrics
+    // used by the single-cycle baseline (with the same program image).
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            cycle_count <= 64'd0;
+            instret_count <= 64'd0;
+            load_count <= 64'd0;
+            store_count <= 64'd0;
+        end else begin
+            cycle_count <= cycle_count + 64'd1;
+            if (W_valid)
+                instret_count <= instret_count + 64'd1;
+            if (M_sel_result) load_count <= load_count + 64'd1;
+            if (M_we_mem) store_count <= store_count + 64'd1;
+        end
+    end
 
 
     // ====================================================================
